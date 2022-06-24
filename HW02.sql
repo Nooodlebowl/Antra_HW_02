@@ -147,8 +147,15 @@ HAVING COUNT(dt.CategoryID) > 2
 ORDER BY NumOfTypesOfProducts
 
 --Question 19
+SELECT dt.ProductName,dt.UnitPrice,dt.ShipCity
+FROM
+(SELECT TOP 5 p.ProductName, SUM(od.Quantity) Quantity, o.ShipCity, AVG(od.UnitPrice) UnitPrice
+FROM Products p JOIN [Order Details] od ON p.ProductID = od.ProductID JOIN Orders o ON o.OrderID = od.OrderID
+GROUP BY p.ProductName, ShipCity,p.UnitPrice
+Order by Quantity DESC) dt
 
 --Question 20
+
 
 --Question 21
 DISTINCT
